@@ -1,0 +1,18 @@
+- name : Gather System Info
+  hosts : localhost
+  tasks : 
+    - name : show hostname
+      command : hostname
+      register : host_out
+    - debug : 
+        var : host_out.stdout
+    - name : Show OS release
+      command  : cat /etc/os-release
+      register : os_out
+    - debug : 
+        var : os_out.stdout_lines
+    - name : show Ip addresses
+      command : hostname -I
+      register : ip_out
+    - debug : 
+        var : ip_out.stdout
